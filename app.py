@@ -67,18 +67,10 @@ def lights():
         PIN.cleanup()
 
 
-def dht():
-    p = subprocess.Popen(["sudo", "python", "/home/utkarsh/Desktop/blu-client/dht.py", ],
-                         stdout=subprocess.PIPE)
-    result, error = p.communicate()
-    print result
-
-
 def initiate_core_events():
     lights_thread = Thread(target=lights)
     lights_thread.start()
-    dht_thread = Thread(target=dht)
-    dht_thread.start()
+    subprocess.Popen(["sudo", "python", "/home/utkarsh/Desktop/blu-client/dht.py"], stdout=subprocess.PIPE)
 
 
 def bluetooth():
